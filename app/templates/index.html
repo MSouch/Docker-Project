@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Records</title>
+</head>
+<body>
+    <h1>Student Records</h1>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% elif success_message %}
+        <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
+
+    {% if students %}
+        <ul>
+            {% for student in students %}
+            <li>
+                <strong>{{ student.studentName }}</strong> (ID: {{ student.studentID }})<br>
+                Course: {{ student.course }}<br>
+                Date: {{ student.presentDate }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No student records found.</p>
+    {% endif %}
+
+    <!-- Add Student Form -->
+    <h2>Add a New Student</h2>
+    <form method="POST" action="/add-student">
+        <label for="studentID">ID:</label>
+        <input type="text" name="studentID" required><br><br>
+        
+        <label for="studentName">Name:</label>
+        <input type="text" name="studentName" required><br><br>
+        
+        <label for="course">Course:</label>
+        <input type="text" name="course" required><br><br>
+        
+        <label for="presentDate">Date:</label>
+        <input type="text" name="presentDate" placeholder="yyyy-mm-dd" required><br><br>
+        
+        <button type="submit">Add Student</button>
+    </form>
+</body>
+</html>
