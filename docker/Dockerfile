@@ -10,6 +10,8 @@ RUN apt-get update && \
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install flask-jwt-extended
+
 COPY . .
 
 EXPOSE 8080
